@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>ChatPage</title>
+    <link rel="stylesheet"  th:href="@{/bootstrap/css/bootstrap.css}"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.0.0/sockjs.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script type="text/javascript" th:src="@{/angular.min.js}"></script>
+    <script type="text/javascript" th:src="@{/angular-cookies.min.js}"></script>
+    <script type="text/javascript" th:src="@{/app/app.module.js}"></script>
+    <script type="text/javascript" th:src="@{/app/chat.controller.js}"></script>
+</head>
+<body ng-app="chatApp">
+<div ng-controller="ChatController as chat_controller" ng-init="chat_controller.init()">
+    <div style="margin-top: 20px; margin-left: 20px;">
+        <input type="text" placeholder="Add message..." ng-model="chat_controller.message" />
+    </div>
+    <div style="margin-top: 20px; margin-left: 20px;">
+        <button ng-click="chat_controller.addMessage()" type="button" class="btn btn-primary">Send</button>
+    </div>
+    <div style="margin-top: 20px; margin-left: 20px;">
+        <button ng-click="chat_controller.clear()" type="button" class="btn  btn-success">Clear</button>
+    </div>
+    <div style="margin-top: 20px; margin-left: 20px;">
+        <button ng-click="chat_controller.logout()" type="button" class="btn btn-error">logout</button>
+    </div>
+    <hr/>
+    <div style="margin-top: 20px; margin-left: 20px;">
+        <ol>
+            <list-item ng-repeat="message in chat_controller.messages track by $index" ng-style="chat_controller.set_color(message.author)">
+                {{ message.author }} :    {{ message.text }} <br/>
+            </list-item>
+        </ol>
+    </div>
+
+    <div style="margin-top: 20px; margin-left: 20px;">
+        <ol>
+            <list-item ng-repeat="participant in chat_controller.participants track by $index">
+                {{ participant.id }} :    {{ participant.name }} <br/>
+            </list-item>
+        </ol>
+    </div>
+</div>
+</body>
+</html>

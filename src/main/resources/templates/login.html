@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>LoginPage</title>
+    <link rel="stylesheet"  th:href="@{/bootstrap/css/bootstrap.css}"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.0.0/sockjs.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script type="text/javascript" th:src="@{/angular.min.js}"></script>
+    <script type="text/javascript" th:src="@{/angular-cookies.min.js}"></script>
+    <script type="text/javascript" th:src="@{/app/app.module.js}"></script>
+    <script type="text/javascript" th:src="@{/app/login.controller.js}"></script>
+
+</head>
+<body ng-app="chatApp">
+<div ng-controller="LoginController as login_controller" ng-init="login_controller.init()">
+    <div>
+        <form id="form_login">
+            <div style="margin-top: 20px; margin-left: 20px;">
+                <input type="text" placeholder="Enter Username" name="name" ng-model="login_controller.name"/>
+            </div>
+            <div style="margin-top: 20px; margin-left: 20px;">
+                <button ng-click="login_controller.login()" type="button" class="btn  btn-success">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
