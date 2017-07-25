@@ -21,11 +21,7 @@ import java.util.List;
 public class ChatMessageController {
 
     @Autowired
-    private SimpMessagingTemplate simpMessagingTemplate;
-
-    @Autowired
     private ParticipantRepository participantRepository;
-
 
     @SubscribeMapping("/participants")
     public List<User> retrieveParticipants() {
@@ -50,12 +46,9 @@ public class ChatMessageController {
         return user;
     }
 
-
     @MessageMapping("/hello")
     @SendTo("/topic/newMessage")
-    public ChatMessage save(ChatMessage chatMessage) {
+    public ChatMessage newMessage(ChatMessage chatMessage) {
         return chatMessage;
     }
-
-
 }

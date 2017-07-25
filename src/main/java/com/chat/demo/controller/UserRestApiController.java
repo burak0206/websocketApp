@@ -18,10 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserRestApiController {
 
-    @Autowired private SimpMessagingTemplate simpMessagingTemplate;
-
-    @Autowired
-    private ParticipantRepository participantRepository;
 
     @Autowired
     private UserService userService;
@@ -32,7 +28,6 @@ public class UserRestApiController {
             username = "username";
         }
         User user = userService.findByUsername(username);
-        //participantRepository.add(user.getId(),user);
         return user;
     }
 }
