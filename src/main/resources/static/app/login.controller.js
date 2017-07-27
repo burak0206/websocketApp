@@ -30,7 +30,6 @@
                     $cookies.put('username',response.data.name);
                     $cookies.put('id',response.data.id);
                     $window.location = "/chat"
-
                 }).catch(function (error) {
                     console.log(error);
                 })
@@ -53,7 +52,6 @@
                 console.log("addParticipant: " + data);
                 service.stomp.send("/app/add/participants", {}, JSON.stringify({ 'id':data.id, 'name':data.name }));
             }
-
 
             service.login =  function (name) {
                 var url = "/user";

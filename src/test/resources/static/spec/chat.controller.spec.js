@@ -30,7 +30,12 @@ describe("ChatController", function() {
     });
 
     it("should remove cookies when logout", function() {
-        spyOn(chat_controller,"logout");
+        spyOn(ChatServiceMock, "removeParticipant");
+        spyOn(ChatServiceMock.stomp, 'send')
+        spyOn(chat_controller,'logout').and.callFake(function () {
+            cookies.remove('username');
+            cookies.remove('id');
+        });;
         expect(cookies.get("id")).toBe(undefined);
         expect(cookies.get("username")).toBe(undefined);
     });
